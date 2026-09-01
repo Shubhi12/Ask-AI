@@ -1,3 +1,4 @@
+from app.models import users, knowledge_base
 from app.core.database import SessionLocal, Base
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Index, UniqueConstraint
 from sqlalchemy.orm import relationship
@@ -11,6 +12,8 @@ class Documents(Base):
     updated_at = Column(DateTime, index=True)
     user_id = Column(Integer, ForeignKey("users.id"))
     user = relationship("Users", back_populates="documents")
+    knowledge_bases = relationship("KnowledgeBase", back_populates="document")
+
 
     __table_args__ = (
         Index("idx_documents_file_name", "file_name"),
@@ -54,6 +57,17 @@ class Documents(Base):
             db.close()
 
     @classmethod
+    def get_document_by_id(cls, doc_id: int):
+        db = SessionLocal()
+        try:
+            return db.query(cls).filter(cls.id == doc_id).first()
+        except Exception as e:
+            print(e)
+            return None
+        finally:
+            db.close()
+
+    @classmethod
     def delete(cls, doc_id: int):
         db = SessionLocal()
         try:
@@ -69,6 +83,7 @@ class Documents(Base):
             return False
         finally:
             db.close()
+
 
     
 

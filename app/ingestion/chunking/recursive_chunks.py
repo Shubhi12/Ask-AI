@@ -1,3 +1,5 @@
+from app.services.helpers import get_file_name
+from app.ingestion.loader.pdf_reader import PDFReader
 from app.ingestion.chunking.base import ChunkingStrategy
 
 class RecursiveChunks(ChunkingStrategy):
@@ -24,7 +26,19 @@ class RecursiveChunks(ChunkingStrategy):
             self.chunking(text, delimiter_index + 1)
 
         return self.chunks
-        
+
+    def generate_chunks(self, file_path:str):
+        document = PDFReader(file_path).load_document()
+        chunks=[]
+        for page_number, page in enumerate(document.pages, start=1):
+            for chunk in self.chunking(page.extract_text()):
+                chunk_metadata = {
+                    "source": get_file_name(file_path),
+                    "page": page_number,
+                    "text": chunk
+                }   
+                chunks.append(chunk_metadata)
+        return chunks
             
 
         

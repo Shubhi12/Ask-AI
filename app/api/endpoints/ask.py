@@ -1,25 +1,11 @@
 from fastapi import APIRouter
 from app.schemas import AskRequest
-from app.pipelines.ingesion import IngesionPipeline
 from app.models.knowledge_base import KnowledgeBase
 from app.services.prompts import COMPANY_POLICY_PROMPT, SYSTEM_PROMPT
 from app.services.llm_services import LLMServices
 
 router = APIRouter()
 llm_services = LLMServices()
-
-@router.post("/ingest",tags=["rag"])
-def ingest_document():
-    try:
-        ingesion = IngesionPipeline()
-        ingesion.run("employee_handbook.pdf")
-        return {"message": "Document ingested successfully"}
-    except Exception as e:
-        print(e)
-        return {"error": str(e),
-                "status": "error",
-                "http_code": 500}
-
 
 @router.post("/ask",tags=["rag"])
 def ask(request:AskRequest):

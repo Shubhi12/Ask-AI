@@ -62,5 +62,10 @@ def get_domain(audience:str)->str:
         return "Backend engineering"
     else:
         return "general"
- 
+
+
+def get_file_name(file_path:str)->str:
+    file_name = file_path.split("/")[-1]
+    return file_name
+    
     
