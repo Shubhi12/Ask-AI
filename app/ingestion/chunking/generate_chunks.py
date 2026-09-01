@@ -1,5 +1,5 @@
-from app.services.rag.loader.pdf_reader import PDFReader
-from app.services.rag.chunking_techniques.recursive_chunks import RecursiveChunks
+from app.ingestion.loader.pdf_reader import PDFReader
+from app.ingestion.chunking.recursive_chunks import RecursiveChunks
 
 
 class GenerateChunksFactory():

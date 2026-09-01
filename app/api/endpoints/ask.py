@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from app.schemas import AskRequest
-from pipelines.ingesion import IngesionPipeline
-from models.knowledge_base import KnowledgeBase
+from app.pipelines.ingesion import IngesionPipeline
+from app.models.knowledge_base import KnowledgeBase
 from app.services.prompts import COMPANY_POLICY_PROMPT, SYSTEM_PROMPT
 from app.services.llm_services import LLMServices
 

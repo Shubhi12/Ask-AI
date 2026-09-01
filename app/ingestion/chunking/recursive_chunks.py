@@ -1,4 +1,4 @@
-from app.services.rag.interfaces.chunking_strategy import ChunkingStrategy
+from app.ingestion.chunking.base import ChunkingStrategy
 
 class RecursiveChunks(ChunkingStrategy):
     def __init__(self):

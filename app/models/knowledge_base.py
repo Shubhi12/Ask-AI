@@ -3,7 +3,7 @@ from sqlalchemy.dialects.postgresql import JSONB
 from pgvector.sqlalchemy import Vector
 from sqlalchemy.orm import relationship
 from datetime import datetime
-from core.database import SessionLocal, Base
+from app.core.database import SessionLocal, Base
 
 class KnowledgeBase(Base):
     __tablename__ = "knowledge_base"
@@ -15,7 +15,8 @@ class KnowledgeBase(Base):
     embedding = Column(Vector(1024))
     created_at = Column(DateTime, index=True)
     updated_at = Column(DateTime, index=True)
-    user_id = Column(Integer, ForeignKey("users.id"))
+    document_id = Column(Integer, ForeignKey("documents.id"))
+    document = relationship("Documents", back_populates="knowledge_bases")
 
     @staticmethod
     def search_vector_similarity(query_embedding: list, k: int = 3) -> list:

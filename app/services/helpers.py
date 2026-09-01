@@ -2,7 +2,7 @@ import math
 
 from app.services.llm_services import LLMServices
 from app.enums import Audience, Tone
-from core.config import settings
+from app.core.config import settings
 
 CONVERSATIONS = {}
 

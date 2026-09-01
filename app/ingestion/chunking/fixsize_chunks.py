@@ -1,4 +1,4 @@
-from app.rag_services.interfaces.chunking_strategy import ChunkingStrategy
+from app.ingestion.chunking.base import ChunkingStrategy
 
 CHUNK_SIZE=500
 CHUNK_OVERLAP=50

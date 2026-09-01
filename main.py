@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 load_dotenv()
 from fastapi import FastAPI
-from core.config import settings
+from app.core.config import settings
 from app.api.router import api_router
 
 

@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from models.users import Users
+from app.models.users import Users
 from app.schemas.requests import UserLoginRequest,UserRegisterRequest
 
 router = APIRouter()

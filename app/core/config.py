@@ -35,6 +35,11 @@ class Settings(BaseSettings):
     S3_SECRET_ACCESS_KEY: str = os.getenv("S3_SECRET_ACCESS_KEY", "")
     S3_ACCESS_KEY: str = os.getenv("S3_ACCESS_KEY", "")
 
+    REDIS_URL: str = os.getenv("REDIS_URL", "redis://localhost:6379/0")
+    
+    CELERY_BROKER_URL: str = os.getenv("CELERY_BROKER_URL", "redis://localhost:6379/0")
+    CELERY_RESULT_BACKEND: str = os.getenv("CELERY_RESULT_BACKEND", "redis://localhost:6379/0")
+
     
 
     class Config:

@@ -4,9 +4,6 @@ from sqlalchemy import pool
 from alembic import context
 from core.config import settings
 from core.database import Base
-from models.users import Users
-from models.document import Documents
-from models.knowledge_base import KnowledgeBase
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

@@ -1,8 +1,8 @@
-from core.config import settings
+from app.core.config import settings
 from app.services.rag.chunking_techniques.generate_chunks import GenerateChunksFactory
 from app.services.llm_services import LLMServices
-from core.database import SessionLocal
-from models.knowledge_base import KnowledgeBase
+from app.core.database import SessionLocal
+from app.models.knowledge_base import KnowledgeBase
 
 class IngesionPipeline:
     def __init__(self):

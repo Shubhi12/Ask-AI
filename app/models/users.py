@@ -1,9 +1,7 @@
 from datetime import datetime
-from core.database import SessionLocal
+from app.core.database import SessionLocal,Base
 from sqlalchemy import Column, Integer, String, DateTime, Index
 from sqlalchemy.orm import relationship
-from core.database import Base
-
 
 class Users(Base):
    __tablename__ = "users"
@@ -76,3 +74,16 @@ class Users(Base):
            raise Exception(e)
        finally:
            db.close()
+    
+   @classmethod
+   def get_user_by_username(cls,username:str):
+        db = SessionLocal()
+        try:
+            user = db.query(Users).filter(Users.username == username).first()
+            return user
+        except Exception as e:
+            db.rollback()
+            print(e)
+            raise Exception(e)
+        finally:
+            db.close()
