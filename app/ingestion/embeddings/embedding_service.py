@@ -8,13 +8,19 @@ class EmbeddingService(EmbeddingsProvider):
     def __init__(self):
         self.llm_services = LLMServices()
     
-    def embed_texts(self,texts:list[str])->list[list[float]]:
+    def embed_texts(self, texts: list[str]) -> list[list[float]]:
         embeddings = self.llm_services.embed_text(texts)
+        if not isinstance(embeddings, list):
+            raise ValueError(f"Expected list of embeddings, but received {type(embeddings)}: {embeddings}")
+        if embeddings and not isinstance(embeddings[0], (list, tuple)):
+            raise ValueError(f"Expected list of numerical vectors, but received element of type {type(embeddings[0])}")
         return embeddings
     
-    def embed_text(self,text:str)->list[float]:
-        embedding = self.llm_services.embed_text([text])
-        return embedding[0]
+    def embed_text(self, text: str) -> list[float]:
+        embeddings = self.embed_texts([text])
+        if not embeddings:
+            raise ValueError("Failed to obtain embedding for text")
+        return embeddings[0]
 
 
 

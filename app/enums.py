@@ -46,4 +46,6 @@ class Length(str,Enum):
     MEDIUM = "medium"
     LONG = "long"  
 
-    
+class EmbeddingModels(str,Enum):
+    LLAMA_NEMO_EMBED = "llama_nemo_embed"
+    LIQUID_LM = "liquid_lm"
