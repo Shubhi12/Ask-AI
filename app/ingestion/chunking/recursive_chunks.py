@@ -5,7 +5,7 @@ from app.ingestion.chunking.base import ChunkingStrategy
 class RecursiveChunks(ChunkingStrategy):
     def __init__(self):
         super().__init__()
-        self.delimiters = ["\n\n", "\n", ".", ","]
+        self.delimiters = ["\n\n", "\n", "."]
         self.chunks = []
 
     def chunking(self, text: str, delimiter_index: int = 0):

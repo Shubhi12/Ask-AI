@@ -7,7 +7,7 @@ from app.core.storage import get_storage_client
 from app.core.config import settings
 
 
-@celery_app.task(rate_limit="1/m")
+@celery_app.task(rate_limit="3/m")
 def ingest_documents(file_names: list[str], document_ids: list[int], user_name: str):
     """
     Celery task to ingest documents into KnowledgeBase vector table.
@@ -35,7 +35,6 @@ def ingest_documents(file_names: list[str], document_ids: list[int], user_name: 
 
             if os.path.exists(local_path):
                 processed_paths.append(local_path)
-
         if processed_paths:
             ingestion_pipeline = IngesionPipeline()
             ingestion_pipeline.run(processed_paths, document_ids)

@@ -28,8 +28,9 @@ class IngesionPipeline:
                         temp["title"] = batch[j]["source"]
                         temp["document_id"] = document_id
                         embed_chunks.append(temp)
-                db.bulk_insert_mappings(KnowledgeBase, embed_chunks)
-                db.commit()
+                    db.bulk_insert_mappings(KnowledgeBase, embed_chunks)
+                    db.commit()
+            db.flush()
         except Exception as e:
             db.rollback()
             print(e)
