@@ -494,7 +494,7 @@ Rather than being a simple chatbot, ASK AI is designed as an extensible knowledg
 
 **Saloni Sahu**
 
-Python Backend Developer | AI & LLM Enthusiast
+Senior Software Developer | AI & LLM Enthusiast
 
 ---
 
